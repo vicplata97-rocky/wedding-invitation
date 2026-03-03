@@ -76,13 +76,7 @@
       perspective: 800px;
     }
 
-    /* Clip only the bottom overflow so card hides below envelope until opened */
-    .envelope-clip {
-      width: 340px;
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-    }
+
 
     /* Envelope body */
     .env-body {
@@ -153,11 +147,11 @@
     }
     .envelope.open .seal { opacity: 0; pointer-events: none; }
 
-    /* Card peeking out */
+    /* Card sitting inside envelope, hidden until opened */
     .env-card {
       position: absolute;
-      bottom: 0; left: 12%; right: 12%;
-      height: 80%;
+      bottom: 8%; left: 12%; right: 12%;
+      height: 75%;
       background: #fff9f0;
       border-radius: 2px;
       display: flex; align-items: center; justify-content: center;
@@ -165,12 +159,16 @@
       font-size: 18px;
       color: var(--gold);
       letter-spacing: 1px;
-      transform: translateY(100%);
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease 0.4s, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
       box-shadow: 0 -4px 20px rgba(100,70,40,0.1);
       z-index: 1;
     }
-    .envelope.open .env-card { transform: translateY(10%); }
+    .envelope.open .env-card {
+      opacity: 1;
+      transform: translateY(-22%);
+    }
 
     .envelope-hint {
       font-family: 'Lato', sans-serif;
@@ -898,13 +896,11 @@
 <div id="envelope-screen">
   <div class="envelope-wrap">
     <p class="envelope-hint">You are cordially invited</p>
-    <div class="envelope-clip">
-      <div class="envelope" id="envelope">
-        <div class="env-body"></div>
-        <div class="env-flap"></div>
-        <div class="seal">💌</div>
-        <div class="env-card">With Love</div>
-      </div>
+    <div class="envelope" id="envelope">
+      <div class="env-body"></div>
+      <div class="env-flap"></div>
+      <div class="seal">💌</div>
+      <div class="env-card">With Love</div>
     </div>
     <button class="open-btn" onclick="openEnvelope()">Open Invitation</button>
   </div>
