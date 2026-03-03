@@ -76,6 +76,14 @@
       perspective: 800px;
     }
 
+    /* Clip only the bottom overflow so card hides below envelope until opened */
+    .envelope-clip {
+      width: 340px;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
     /* Envelope body */
     .env-body {
       width: 100%;
@@ -890,11 +898,13 @@
 <div id="envelope-screen">
   <div class="envelope-wrap">
     <p class="envelope-hint">You are cordially invited</p>
-    <div class="envelope" id="envelope">
-      <div class="env-body"></div>
-      <div class="env-flap"></div>
-      <div class="seal">💌</div>
-      <div class="env-card">With Love</div>
+    <div class="envelope-clip">
+      <div class="envelope" id="envelope">
+        <div class="env-body"></div>
+        <div class="env-flap"></div>
+        <div class="seal">💌</div>
+        <div class="env-card">With Love</div>
+      </div>
     </div>
     <button class="open-btn" onclick="openEnvelope()">Open Invitation</button>
   </div>
